@@ -77,16 +77,18 @@ LIBS += \
 	-Wl,-rpath,./
 
 LIBS += \
-	-l:libboost_system.a \
-	-l:libboost_filesystem.a
+	-lboost_system \
+	-lboost_filesystem
 
 CONFIG(debug, debug|release) {
 	LIBS += \
-		-lauxiliary_debug
+		-lauxiliary_debug \
+		-laudioconvert_debug
 
 } else {
 	LIBS += \
 		-lauxiliary \
+		-laudioconvert \
 		-O3
 }
 
@@ -94,7 +96,7 @@ QMAKE_LFLAGS_RELEASE -= -Wl,-O0 -Wl,-O1 -Wl,-O2
 QMAKE_LFLAGS_RELEASE *= -Wl,-O3
 
 #-------------------------------------------------------------------------------------------------
-# dependencies
+# after build processing
 #-------------------------------------------------------------------------------------------------
 makedist.commands = objcopy -v --strip-debug --strip-unneeded --target elf64-x86-64 $$DESTDIR/$${TARGET} $$DESTDIR/$${TARGET}_dist
 

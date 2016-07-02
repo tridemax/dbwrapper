@@ -2,7 +2,7 @@
 #include "TemplatesForUtterances.h"
 
 
-namespace DbWrapper
+namespace dbwrapper
 {
 	//-------------------------------------------------------------------------------------------------
 	template <class Extender>

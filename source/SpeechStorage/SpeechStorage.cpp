@@ -3,7 +3,7 @@
 #include "TemplatesForUtterances.h"
 
 
-namespace DbWrapper
+namespace dbwrapper
 {
 //	const char SpeechStorage::m_dbConnectionParams[] = "hostaddr=192.168.76.200 port=5432 dbname=trainingdb user=postgres password=111 connect_timeout=30 keepalives=1";
 

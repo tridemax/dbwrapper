@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace DbWrapper
+namespace dbwrapper
 {
 	//-------------------------------------------------------------------------------------------------
 	/// IdVector

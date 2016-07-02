@@ -3,7 +3,7 @@
 #include "Miscellaneous.h"
 
 
-namespace DbWrapper
+namespace dbwrapper
 {
 	//-------------------------------------------------------------------------------------------------
 	/// SpeechStorage
