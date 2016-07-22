@@ -74,3 +74,6 @@
 #include <auxiliary.h>
 #include <audioconvert.h>
 #include <postgres.h>
+
+#include <QImage>
+#include <wfdb.h>

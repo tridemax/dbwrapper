@@ -1,5 +1,5 @@
 #include "platform.h"
-#include "../../source/SpeechStorage/SpeechStorageDialog.h"
+#include "../../source/EcgStorage/EcgCommandHandler.h"
 
 
 //-------------------------------------------------------------------------------------------------
@@ -28,17 +28,26 @@ int main(int argc, const char** argv)
 		configPath /= "dbwrapper.conf";
 	}
 
-	// Run the autobuild
-	/*
-	DbWrapper::SpeechStorage speechStorage;
+	// Run terminal dialog
+	std::unique_ptr<dbwrapper::EcgCommandHandler> ecgCommandHandler(new dbwrapper::EcgCommandHandler());
 
-	int32_t exitCode = 0;
-
-	if (!autoBuilder.Run(configPath.c_str()))
+	while (true)
 	{
-		std::cerr << autoBuilder.LastError() << std::endl;
-		exitCode = 1;
+		std::string command;
+		std::cin >> command;
+
+		boost::trim(command);
+
+		if (ecgCommandHandler && ecgCommandHandler->HandleCommand(command))
+		{
+			continue;
+		}
+
+		if (boost::istarts_with(command, "exit") || boost::istarts_with(command, "q"))
+		{
+			break;
+		}
 	}
-*/
+
 	return 0;
 }

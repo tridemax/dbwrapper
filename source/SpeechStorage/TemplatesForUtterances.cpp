@@ -11,7 +11,7 @@ namespace dbwrapper
 		m_skip(skip),
 		m_limit(limit)
 	{
-		Aux::Hash<uint64_t> hasher;
+		aux::Hash<uint64_t> hasher;
 
 		// Check for "PrimaryKey" and "PrimaryKeyList" filters
 		if (!m_idVector.empty())
@@ -66,7 +66,7 @@ namespace dbwrapper
 		if (m_templateComponents & Filter_PrimaryKey)
 		{
 			m_templateCode.append("utterance_id = $");
-			m_templateCode.append(indexConvBuffer, Aux::u32toa(++indexCurrentValue, indexConvBuffer) - indexConvBuffer);
+			m_templateCode.append(indexConvBuffer, aux::u32toa(++indexCurrentValue, indexConvBuffer) - indexConvBuffer);
 			m_templateCode.append(" and ");
 		}
 
@@ -78,7 +78,7 @@ namespace dbwrapper
 			for (uint32_t idIndex = 0u; idIndex != m_idVector.size(); ++idIndex)
 			{
 				m_templateCode.append(1, '$');
-				m_templateCode.append(indexConvBuffer, Aux::u32toa(++indexCurrentValue, indexConvBuffer) - indexConvBuffer);
+				m_templateCode.append(indexConvBuffer, aux::u32toa(++indexCurrentValue, indexConvBuffer) - indexConvBuffer);
 
 				if (idIndex != m_idVector.size() - 1u)
 				{
@@ -109,9 +109,9 @@ namespace dbwrapper
 		if (m_templateComponents & Filter_SkipAndLimit)
 		{
 			m_templateCode.append("limit $");
-			m_templateCode.append(indexConvBuffer, Aux::i64toa(++indexCurrentValue, indexConvBuffer) - indexConvBuffer);
+			m_templateCode.append(indexConvBuffer, aux::i64toa(++indexCurrentValue, indexConvBuffer) - indexConvBuffer);
 			m_templateCode.append(" offset $");
-			m_templateCode.append(indexConvBuffer, Aux::i64toa(++indexCurrentValue, indexConvBuffer) - indexConvBuffer);
+			m_templateCode.append(indexConvBuffer, aux::i64toa(++indexCurrentValue, indexConvBuffer) - indexConvBuffer);
 		}
 
 		// Add finalizer
@@ -127,7 +127,7 @@ namespace dbwrapper
 		m_skip(skip),
 		m_limit(limit)
 	{
-		Aux::Hash<uint64_t> hasher;
+		aux::Hash<uint64_t> hasher;
 
 		// Check for "DurationMin" filter
 		if (m_utteranceFilter.m_durationMin != 0u)
@@ -200,7 +200,7 @@ namespace dbwrapper
 		if (m_templateComponents & Filter_DurationMin)
 		{
 			m_templateCode.append("time_duration >= $");
-			m_templateCode.append(indexConvBuffer, Aux::u32toa(++indexCurrentValue, indexConvBuffer) - indexConvBuffer);
+			m_templateCode.append(indexConvBuffer, aux::u32toa(++indexCurrentValue, indexConvBuffer) - indexConvBuffer);
 			m_templateCode.append(" and ");
 		}
 
@@ -208,7 +208,7 @@ namespace dbwrapper
 		if (m_templateComponents & Filter_DurationMax)
 		{
 			m_templateCode.append("time_duration <= $");
-			m_templateCode.append(indexConvBuffer, Aux::u32toa(++indexCurrentValue, indexConvBuffer) - indexConvBuffer);
+			m_templateCode.append(indexConvBuffer, aux::u32toa(++indexCurrentValue, indexConvBuffer) - indexConvBuffer);
 			m_templateCode.append(" and ");
 		}
 
@@ -216,7 +216,7 @@ namespace dbwrapper
 		if (m_templateComponents & Filter_SpecificLanguage)
 		{
 			m_templateCode.append("language = $");
-			m_templateCode.append(indexConvBuffer, Aux::u32toa(++indexCurrentValue, indexConvBuffer) - indexConvBuffer);
+			m_templateCode.append(indexConvBuffer, aux::u32toa(++indexCurrentValue, indexConvBuffer) - indexConvBuffer);
 			m_templateCode.append(" and ");
 		}
 
@@ -228,7 +228,7 @@ namespace dbwrapper
 			for (uint32_t languageIndex = 0u; languageIndex != m_utteranceFilter.m_languageList.size(); ++languageIndex)
 			{
 				m_templateCode.append(1, '$');
-				m_templateCode.append(indexConvBuffer, Aux::u32toa(++indexCurrentValue, indexConvBuffer) - indexConvBuffer);
+				m_templateCode.append(indexConvBuffer, aux::u32toa(++indexCurrentValue, indexConvBuffer) - indexConvBuffer);
 
 				if (languageIndex != m_utteranceFilter.m_languageList.size() - 1u)
 				{
@@ -265,9 +265,9 @@ namespace dbwrapper
 		if (m_templateComponents & Filter_SkipAndLimit)
 		{
 			m_templateCode.append("limit $");
-			m_templateCode.append(indexConvBuffer, Aux::i64toa(++indexCurrentValue, indexConvBuffer) - indexConvBuffer);
+			m_templateCode.append(indexConvBuffer, aux::i64toa(++indexCurrentValue, indexConvBuffer) - indexConvBuffer);
 			m_templateCode.append(" offset $");
-			m_templateCode.append(indexConvBuffer, Aux::i64toa(++indexCurrentValue, indexConvBuffer) - indexConvBuffer);
+			m_templateCode.append(indexConvBuffer, aux::i64toa(++indexCurrentValue, indexConvBuffer) - indexConvBuffer);
 		}
 
 		// Add finalizer

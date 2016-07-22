@@ -18,7 +18,7 @@ CONFIG(debug, debug|release) {
 
 TEMPLATE = app
 CONFIG += console precompile_header c++14
-CONFIG -= qt
+QT += gui
 MAKEFILE = $$_PRO_FILE_PWD_/dbwrapper.makefile
 
 #-------------------------------------------------------------------------------------------------
@@ -50,6 +50,7 @@ QMAKE_CXXFLAGS += \
 	-I$$_PRO_FILE_PWD_/../postgres \
 	-I$$_PRO_FILE_PWD_/../thirdparty/postgresql/src/include \
 	-I$$_PRO_FILE_PWD_/../thirdparty/postgresql_config/linux \
+	-I$$_PRO_FILE_PWD_/../thirdparty/wfdb/lib \
 	-I$$_PRO_FILE_PWD_/platform/linux
 
 PRECOMPILED_HEADER = $$_PRO_FILE_PWD_/platform/linux/platform.h
@@ -83,11 +84,13 @@ LIBS += \
 CONFIG(debug, debug|release) {
 	LIBS += \
 		-lauxiliary_debug \
+		-lwfdb_debug \
 		-laudioconvert_debug
 
 } else {
 	LIBS += \
 		-lauxiliary \
+		-lwfdb \
 		-laudioconvert \
 		-O3
 }
@@ -113,7 +116,9 @@ SOURCES += \
 	platform/linux/main.cpp \
     source/SpeechStorage/SpeechStorage.cpp \
     source/SpeechStorage/TemplatesForUtterances.cpp \
-    source/SpeechStorage/SpeechStorageDialog.cpp
+    source/SpeechStorage/SpeechStorageDialog.cpp \
+    source/EcgStorage/EcgStorage.cpp \
+    source/EcgStorage/EcgCommandHandler.cpp
 
 HEADERS += \
 	../postgres/postgres.h \
@@ -129,5 +134,7 @@ HEADERS += \
     source/SpeechStorage/Miscellaneous.h \
     source/SpeechStorage/SpeechStorage.h \
     source/SpeechStorage/TemplatesForUtterances.h \
-    source/SpeechStorage/SpeechStorageDialog.h
+    source/SpeechStorage/SpeechStorageDialog.h \
+    source/EcgStorage/EcgStorage.h \
+    source/EcgStorage/EcgCommandHandler.h
 

@@ -18,16 +18,10 @@ namespace dbwrapper
 	}
 
 	//-------------------------------------------------------------------------------------------------
-	void SpeechStorage::ExplainQueries(bool explainQueries)
-	{
-		m_explainQueries = explainQueries;
-	}
-
-	//-------------------------------------------------------------------------------------------------
 	bool SpeechStorage::LoadUtterances(const IdVector& idVector, std::list<Utterance>& utteranceList)
 	{
 		// Try to open connection
-		auto& connection = Postgres::PostgresClient::Instance().GetConnection(m_dbConnectionParams);
+		auto& connection = Postgres::PostgresClient::Instance().GetConnection(m_connectionString);
 
 		if (!connection.IsOpen())
 		{
@@ -101,7 +95,7 @@ namespace dbwrapper
 	bool SpeechStorage::SelectUtterances(const UtteranceFilter& utteranceFilter, int64_t skip, int64_t limit, std::list<Utterance>& utteranceList)
 	{
 		// Try to open connection
-		auto& connection = Postgres::PostgresClient::Instance().GetConnection(m_dbConnectionParams);
+		auto& connection = Postgres::PostgresClient::Instance().GetConnection(m_connectionString);
 
 		if (!connection.IsOpen())
 		{
@@ -175,7 +169,7 @@ namespace dbwrapper
 	bool SpeechStorage::SelectUtterancesStatistics(const UtteranceFilter& utteranceFilter, uint64_t& filteredUtterancesQuantity, uint64_t& lastUtteranceId)
 	{
 		// Try to open connection
-		auto& connection = Postgres::PostgresClient::Instance().GetConnection(m_dbConnectionParams);
+		auto& connection = Postgres::PostgresClient::Instance().GetConnection(m_connectionString);
 
 		if (!connection.IsOpen())
 		{
@@ -233,7 +227,7 @@ namespace dbwrapper
 	bool SpeechStorage::VacuumUtterances()
 	{
 		// Try to open connection
-		auto& connection = Postgres::PostgresClient::Instance().GetConnection(m_dbConnectionParams);
+		auto& connection = Postgres::PostgresClient::Instance().GetConnection(m_connectionString);
 
 		if (!connection.IsOpen())
 		{
@@ -258,7 +252,7 @@ namespace dbwrapper
 	bool SpeechStorage::VacuumAndAnalyzeUtterances()
 	{
 		// Try to open connection
-		auto& connection = Postgres::PostgresClient::Instance().GetConnection(m_dbConnectionParams);
+		auto& connection = Postgres::PostgresClient::Instance().GetConnection(m_connectionString);
 
 		if (!connection.IsOpen())
 		{
@@ -283,7 +277,7 @@ namespace dbwrapper
 	bool SpeechStorage::CreateIndicesForUtterances()
 	{
 		// Try to open connection
-		auto& connection = Postgres::PostgresClient::Instance().GetConnection(m_dbConnectionParams);
+		auto& connection = Postgres::PostgresClient::Instance().GetConnection(m_connectionString);
 
 		if (!connection.IsOpen())
 		{
@@ -318,7 +312,7 @@ namespace dbwrapper
 	bool SpeechStorage::DeleteIndicesForUtterances()
 	{
 		// Try to open connection
-		auto& connection = Postgres::PostgresClient::Instance().GetConnection(m_dbConnectionParams);
+		auto& connection = Postgres::PostgresClient::Instance().GetConnection(m_connectionString);
 
 		if (!connection.IsOpen())
 		{
@@ -353,7 +347,7 @@ namespace dbwrapper
 	bool SpeechStorage::ReindexIndicesForUtterances()
 	{
 		// Try to open connection
-		auto& connection = Postgres::PostgresClient::Instance().GetConnection(m_dbConnectionParams);
+		auto& connection = Postgres::PostgresClient::Instance().GetConnection(m_connectionString);
 
 		if (!connection.IsOpen())
 		{
